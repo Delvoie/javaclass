@@ -1,4 +1,4 @@
-package Ducks1;
+package Ducks;
 import java.util.Scanner;
 
 public class main {
