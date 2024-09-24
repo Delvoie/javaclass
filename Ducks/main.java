@@ -2,45 +2,68 @@ package Ducks;
 import java.util.Scanner;
 
 public class main {
+    double pondSize;
+    Scanner scanner = new Scanner(System.in);
 
-    int pondSize;
+    public void getPondType() {
+        System.out.println("Choose pond type:");
+        System.out.println("1. Rectangular");
+        System.out.println("2. Circular");
+        System.out.print("Enter your choice (1 or 2): ");
+        int choice = scanner.nextInt();
 
-    // Get rectangular pond size from user
+        if (choice == 1) {
+            getRectangularPond();
+        } else if (choice == 2) {
+            getCircularPond();
+        } else {
+            System.out.println("Invalid choice. Defaulting to rectangular pond.");
+            getRectangularPond();
+        }
+    }
+
     public void getRectangularPond() {
-        int pondWidth;
-        int pondLength;
         System.out.println("Please enter pond measurements in meters:");
-        Scanner scanner = new Scanner(System.in);
-        
         System.out.print("Enter pond width: ");
-        pondWidth = scanner.nextInt();
+        double pondWidth = scanner.nextDouble();
         
         System.out.print("Enter pond length: ");
-        pondLength = scanner.nextInt();
+        double pondLength = scanner.nextDouble();
         
         pondSize = pondWidth * pondLength;
         
-        System.out.println("Pond size is: " + pondSize + " square meters");    }
+        System.out.println("Pond size is: " + pondSize + " square meters");
+    }
 
-        // Get rectangular pond size from user
+    public void getCircularPond() {
+        System.out.println("Please enter pond measurement in meters:");
+        System.out.print("Enter pond radius: ");
+        double radius = scanner.nextDouble();
+        
+        pondSize = calculateCircleArea(radius);
+        
+        System.out.println("Pond size is: " + pondSize + " square meters");
+    }
+
+    public double calculateCircleArea(double radius) {
+        return Math.PI * radius * radius;
+    }
+
     public void getDuckSizes() {
-        int duckWidth;
-        int duckLength; 
         System.out.print("Please enter duck width in meters: ");
-        Scanner scanner = new Scanner(System.in);
-        duckWidth = scanner.nextInt();
+        double duckWidth = scanner.nextDouble();
 
         System.out.print("Please enter duck length in meters: ");
-        duckLength = scanner.nextInt();
+        double duckLength = scanner.nextDouble();
 
         int ducksNeeded = (int) Math.floor(pondSize / (duckLength * duckWidth));
 
-        System.out.printf("The ammount of ducks needed: %d%n", ducksNeeded); 
-       }
+        System.out.printf("The amount of ducks needed: %d%n", ducksNeeded);
+    }
 
     public static void main(String[] args) {
-        main duck = new main();
-        duck.getRectangularPond();
+        Main duck = new Main();
+        duck.getPondType();
         duck.getDuckSizes();
     }
 }
