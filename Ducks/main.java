@@ -6,19 +6,32 @@ public class main {
     Scanner scanner = new Scanner(System.in);
 
     public void getPondType() {
-        System.out.println("Choose pond type:");
-        System.out.println("1. Rectangular");
-        System.out.println("2. Circular");
-        System.out.print("Enter your choice (1 or 2): ");
-        int choice = scanner.nextInt();
-
-        if (choice == 1) {
-            getRectangularPond();
-        } else if (choice == 2) {
-            getCircularPond();
-        } else {
-            System.out.println("Invalid choice. Defaulting to rectangular pond.");
-            getRectangularPond();
+        int choice;
+    
+        while (true) {
+            System.out.println("Choose pond type:");
+            System.out.println("1. Rectangular");
+            System.out.println("2. Circular");
+            System.out.print("Enter your choice (1 or 2): ");
+    
+            // Check if the input is an integer
+            if (scanner.hasNextInt()) {
+                choice = scanner.nextInt();
+    
+                if (choice == 1) {
+                    getRectangularPond();
+                    break;  // Exit the loop after processing valid input
+                } else if (choice == 2) {
+                    getCircularPond();
+                    break;  // Exit the loop after processing valid input
+                } else {
+                    System.out.println("Invalid choice. Please enter 1 or 2.");
+                }
+            } else {
+                // Clear invalid input
+                scanner.next(); 
+                System.out.println("Invalid input. Please enter a number.");
+            }
         }
     }
 
@@ -62,8 +75,8 @@ public class main {
     }
 
     public static void main(String[] args) {
-        Main duck = new Main();
-        duck.getPondType();
-        duck.getDuckSizes();
+        main pond = new main();
+        pond.getPondType();
+        pond.getDuckSizes();
     }
 }
