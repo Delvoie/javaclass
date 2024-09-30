@@ -8,7 +8,6 @@ public class main {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print(inputPrompt);
-        float diameter = 0;
         boolean validInput = true;
 
         while (validInput) {
@@ -23,7 +22,7 @@ public class main {
             } catch (InputMismatchException e) {
                 System.out.println("Error: Please enter a number.");
                 System.out.print(inputPrompt);
-                scanner.next();
+                scanner.next(); 
             }
         }
 
@@ -38,7 +37,7 @@ public class main {
         double sliceArea = (Math.PI * diameter * diameter) / (4 * targetSlices);
         System.out.printf("A %.2f\" pizza will yield %d slices.\n", diameter, targetSlices);
         System.out.printf("Each slice will have an area of %.2f square inches.\n", sliceArea);
-
+        
         scanner.close();
     }
 }
