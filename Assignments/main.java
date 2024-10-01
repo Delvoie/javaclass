@@ -1,10 +1,10 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class PizzaCutting {
+public class main {
     private static final String inputPrompt = "Please enter the diameter of your pizza (6\" to 24\"): ";
 
-    public static void main(String[] args) {
+    public static void mainPizza(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print(inputPrompt);
@@ -23,7 +23,7 @@ public class PizzaCutting {
             } catch (InputMismatchException e) {
                 System.out.println("Error: Please enter a number.");
                 System.out.print(inputPrompt);
-                scanner.next(); // Clear the invalid input
+                scanner.next(); 
             }
         }
 
