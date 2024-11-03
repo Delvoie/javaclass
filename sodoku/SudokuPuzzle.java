@@ -113,3 +113,16 @@ public class SudokuPuzzle {
         for (int i = 0; i < GRID_SIZE; i++) {
             System.arraycopy(fullGrid[i], 0, puzzle[i], 0, GRID_SIZE);
         }
+        // half numbers
+        int numbersToRemove = GRID_SIZE * GRID_SIZE / 2;
+        while (numbersToRemove > 0) {
+            int row = random.nextInt(GRID_SIZE);
+            int col = random.nextInt(GRID_SIZE);
+            if (puzzle[row][col] != 0) {
+                puzzle[row][col] = 0;
+                numbersToRemove--;
+            }
+        }
+
+        return puzzle;
+    }
