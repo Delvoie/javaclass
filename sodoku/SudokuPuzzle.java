@@ -8,8 +8,8 @@ import java.util.Scanner;
 
 public class SudokuPuzzle {
     // creates Sudoku grid size
-    private static final int GRID_SIZE = 9;
-    private static final int BOX_SIZE = 3;
+    private static final int gride_Size = 9;
+    private static final int box_Size = 3;
 
     // import Random numbers for puzzle
     private static Random random = new Random();
@@ -52,19 +52,20 @@ public class SudokuPuzzle {
         System.out.println("Closing the program...");
         scanner.close();  // Close the scanner when done
     }
+
     // Generate the random Sudoku grid
     public static int[][] createFullSudokuGrid() {
-        int[][] grid = new int[GRID_SIZE][GRID_SIZE];
+        int[][] grid = new int[gride_Size][gride_Size];
         fillGrid(grid);
         return grid;
     }
 
     // Function to fill the grid
     private static boolean fillGrid(int[][] grid) {
-        for (int row = 0; row < GRID_SIZE; row++) {
-            for (int col = 0; col < GRID_SIZE; col++) {
+        for (int row = 0; row < gride_Size; row++) {
+            for (int col = 0; col < gride_Size; col++) {
                 if (grid[row][col] == 0) {
-                    for (int num = 1; num <= GRID_SIZE; num++) {
+                    for (int num = 1; num <= gride_Size; num++) {
                         if (isValid(grid, row, col, num)) {
                             grid[row][col] = num;
                             if (fillGrid(grid)) {
@@ -83,22 +84,22 @@ public class SudokuPuzzle {
     // Check the position is valid
     private static boolean isValid(int[][] grid, int row, int col, int num) {
         // Check row
-        for (int x = 0; x < GRID_SIZE; x++) {
+        for (int x = 0; x < gride_Size; x++) {
             if (grid[row][x] == num) {
                 return false;
             }
         }
         // Check column
-        for (int x = 0; x < GRID_SIZE; x++) {
+        for (int x = 0; x < gride_Size; x++) {
             if (grid[x][col] == num) {
                 return false;
             }
         }
         // Check box
-        int boxRow = row - row % BOX_SIZE;
-        int boxCol = col - col % BOX_SIZE;
-        for (int i = boxRow; i < boxRow + BOX_SIZE; i++) {
-            for (int j = boxCol; j < boxCol + BOX_SIZE; j++) {
+        int boxRow = row - row % box_Size;
+        int boxCol = col - col % box_Size;
+        for (int i = boxRow; i < boxRow + box_Size; i++) {
+            for (int j = boxCol; j < boxCol + box_Size; j++) {
                 if (grid[i][j] == num) {
                     return false;
                 }
@@ -110,15 +111,15 @@ public class SudokuPuzzle {
 
     // Removing numbers from sukoku grid
     public static int[][] createSudokuPuzzle(int[][] fullGrid) {
-        int[][] puzzle = new int[GRID_SIZE][GRID_SIZE];
-        for (int i = 0; i < GRID_SIZE; i++) {
-            System.arraycopy(fullGrid[i], 0, puzzle[i], 0, GRID_SIZE);
+        int[][] puzzle = new int[gride_Size][gride_Size];
+        for (int i = 0; i < gride_Size; i++) {
+            System.arraycopy(fullGrid[i], 0, puzzle[i], 0, gride_Size);
         }
         // half numbers
-        int numbersToRemove = GRID_SIZE * GRID_SIZE / 2;
+        int numbersToRemove = gride_Size * gride_Size / 2;
         while (numbersToRemove > 0) {
-            int row = random.nextInt(GRID_SIZE);
-            int col = random.nextInt(GRID_SIZE);
+            int row = random.nextInt(gride_Size);
+            int col = random.nextInt(gride_Size);
             if (puzzle[row][col] != 0) {
                 puzzle[row][col] = 0;
                 numbersToRemove--;
@@ -129,12 +130,12 @@ public class SudokuPuzzle {
     }
     // Print the Sudoku puzzle
     public static void printSudoku(int[][] grid) {
-        for (int i = 0; i < GRID_SIZE; i++) {
-            if (i % BOX_SIZE == 0 && i != 0) {
+        for (int i = 0; i < gride_Size; i++) {
+            if (i % box_Size == 0 && i != 0) {
                 System.out.println("---------------------");
             }
-            for (int j = 0; j < GRID_SIZE; j++) {
-                if (j % BOX_SIZE == 0 && j != 0) {
+            for (int j = 0; j < gride_Size; j++) {
+                if (j % box_Size == 0 && j != 0) {
                     System.out.print("| ");
                 }
                 if (grid[i][j] == 0) {
