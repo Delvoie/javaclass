@@ -94,3 +94,16 @@ public class SudokuPuzzle {
                 return false;
             }
         }
+        // Check box
+        int boxRow = row - row % BOX_SIZE;
+        int boxCol = col - col % BOX_SIZE;
+        for (int i = boxRow; i < boxRow + BOX_SIZE; i++) {
+            for (int j = boxCol; j < boxCol + BOX_SIZE; j++) {
+                if (grid[i][j] == num) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
