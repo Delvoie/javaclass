@@ -19,3 +19,7 @@ public class SudokuPuzzle {
 
     public static void main(String[] args) {
         String choice = "";
+
+        // Main Menu
+        System.out.println("\nWelcome to the Sudoku Puzzle Generator!");
+        while (!choice.equals("3")) {
