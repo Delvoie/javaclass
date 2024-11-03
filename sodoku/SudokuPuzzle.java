@@ -23,3 +23,12 @@ public class SudokuPuzzle {
         // Main Menu
         System.out.println("\nWelcome to the Sudoku Puzzle Generator!");
         while (!choice.equals("3")) {
+            // Generate a full Sudoku grid
+            int[][] fullGrid = createFullSudokuGrid();
+            
+            // Create a puzzle from the full grid
+            int[][] puzzle = createSudokuPuzzle(fullGrid);
+            
+            // Print the puzzle
+            System.out.println("Here's your newly generated Sudoku puzzle:");
+            printSudoku(puzzle);
