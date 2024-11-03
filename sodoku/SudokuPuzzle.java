@@ -88,3 +88,9 @@ public class SudokuPuzzle {
                 return false;
             }
         }
+        // Check column
+        for (int x = 0; x < GRID_SIZE; x++) {
+            if (grid[x][col] == num) {
+                return false;
+            }
+        }
