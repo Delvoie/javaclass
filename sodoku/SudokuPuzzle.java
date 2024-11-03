@@ -58,7 +58,24 @@ public class SudokuPuzzle {
         fillGrid(grid);
         return grid;
     }
+
     // Function to fill the grid
     private static boolean fillGrid(int[][] grid) {
         for (int row = 0; row < GRID_SIZE; row++) {
             for (int col = 0; col < GRID_SIZE; col++) {
+                if (grid[row][col] == 0) {
+                    for (int num = 1; num <= GRID_SIZE; num++) {
+                        if (isValid(grid, row, col, num)) {
+                            grid[row][col] = num;
+                            if (fillGrid(grid)) {
+                                return true;
+                            }
+                            grid[row][col] = 0;
+                        }
+                    }
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
