@@ -107,6 +107,7 @@ public class SudokuPuzzle {
 
         return true;
     }
+
     // Removing numbers from sukoku grid
     public static int[][] createSudokuPuzzle(int[][] fullGrid) {
         int[][] puzzle = new int[GRID_SIZE][GRID_SIZE];
@@ -126,3 +127,9 @@ public class SudokuPuzzle {
 
         return puzzle;
     }
+    // Print the Sudoku puzzle
+    public static void printSudoku(int[][] grid) {
+        for (int i = 0; i < GRID_SIZE; i++) {
+            if (i % BOX_SIZE == 0 && i != 0) {
+                System.out.println("---------------------");
+            }
