@@ -16,3 +16,6 @@ public class SudokuPuzzle {
 
     //  User input
     private static Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        String choice = "";
