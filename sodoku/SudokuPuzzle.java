@@ -49,3 +49,12 @@ public class SudokuPuzzle {
                 System.out.println("\nInvalid choice. Please try again.");
             }
         }
+        System.out.println("Closing the program...");
+        scanner.close();  // Close the scanner when done
+    }
+    // Generate the random Sudoku grid
+    public static int[][] createFullSudokuGrid() {
+        int[][] grid = new int[GRID_SIZE][GRID_SIZE];
+        fillGrid(grid);
+        return grid;
+    }
