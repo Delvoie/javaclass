@@ -133,3 +133,17 @@ public class SudokuPuzzle {
             if (i % BOX_SIZE == 0 && i != 0) {
                 System.out.println("---------------------");
             }
+            for (int j = 0; j < GRID_SIZE; j++) {
+                if (j % BOX_SIZE == 0 && j != 0) {
+                    System.out.print("| ");
+                }
+                if (grid[i][j] == 0) {
+                    System.out.print("  ");
+                } else {
+                    System.out.print(grid[i][j] + " ");
+                }
+            }
+            System.out.println();
+        }
+    }
+}
