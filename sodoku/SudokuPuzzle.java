@@ -79,3 +79,12 @@ public class SudokuPuzzle {
         }
         return true;
     }
+
+    // Check the position is valid
+    private static boolean isValid(int[][] grid, int row, int col, int num) {
+        // Check row
+        for (int x = 0; x < GRID_SIZE; x++) {
+            if (grid[row][x] == num) {
+                return false;
+            }
+        }
