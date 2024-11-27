@@ -3,7 +3,6 @@
  * Lucas Delvoie
  * October 6th,2024
  */
-asdasdad
  import java.util.Scanner;
 
  public class TemperatureAnalysis {
