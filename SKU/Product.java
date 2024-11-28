@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 
 public class Product {
-    // Set Constants
+    // Setup Variables
     private long sku; // SKU must be 8+ digits
     private String name; // Name of the product
     private double unitCost; // Unit cost of the product
@@ -14,13 +14,13 @@ public class Product {
 
     // Set Defaults
     public Product() {
-        this.sku = 0;
-        this.name = "";
-        this.unitCost = 0.0;
-        this.salePrice = 0.0;
-        this.quantityOnHand = 0;
-        this.quantityNeeded = 0;
-        this.specialInstructions = "";
+        sku = 0;
+        name = "";
+        unitCost = 0.0;
+        salePrice = 0.0;
+        quantityOnHand = 0;
+        quantityNeeded = 0;
+        specialInstructions = "";
     }
 
     // Set Parameters
@@ -34,7 +34,7 @@ public class Product {
         this.specialInstructions = specialInstructions;
     }
 
-    // Getters and Setters
+    // set inputs
     public long getSku() {
         return sku;
     }
@@ -153,7 +153,7 @@ public class Product {
             System.out.print("Special Instructions: ");
             String specialInstructions = scanner.nextLine();
             product.specialInstructions = specialInstructions;
-
+            
             System.out.println("\nSuccessfully added product:");
             
             System.out.println("\nProduct Details:");
