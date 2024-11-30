@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -7,107 +8,124 @@ public class Main {
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        int choice;
-        do {
-            System.out.println("\n--- Menu ---");
-            System.out.println("1) Create Product");
-            System.out.println("2) Create Perishable Product");
-            System.out.println("3) Edit Product by SKU");
-            System.out.println("4) Delete Product by SKU");
-            System.out.println("5) Display Product by SKU");
-            System.out.println("6) Display All Products");
-            System.out.println("7) Exit");
-            System.out.print("Choose an option: ");
-            choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+        int choice = 0;
+        try {
+            do {
+                System.out.println("\n--- Menu ---");
+                System.out.println("1) Create Product");
+                System.out.println("2) Create Perishable Product");
+                System.out.println("3) Edit Product by SKU");
+                System.out.println("4) Delete Product by SKU");
+                System.out.println("5) Display Product by SKU");
+                System.out.println("6) Display All Products");
+                System.out.println("7) Exit");
+                System.out.print("Choose an option: ");
 
-            switch (choice) {
-                case 1 -> createProduct(false);
-                case 2 -> createProduct(true);
-                case 3 -> editProduct();
-                case 4 -> deleteProduct();
-                case 5 -> displayProduct();
-                case 6 -> displayAllProducts();
-                case 7 -> System.out.println("Exiting program. Goodbye!");
-                default -> System.out.println("Invalid choice. Try again.");
-            }
-        } while (choice != 7);
+                try {
+                    choice = scanner.nextInt();
+                    scanner.nextLine(); 
+                } catch (InputMismatchException e) {
+                    System.out.println("Invalid input. Please enter a number between 1 and 7.");
+                    scanner.nextLine(); // Clear invalid input
+                    continue;
+                }
+
+                switch (choice) {
+                    case 1 -> createProduct(false);
+                    case 2 -> createProduct(true);
+                    case 3 -> editProduct();
+                    case 4 -> deleteProduct();
+                    case 5 -> displayProduct();
+                    case 6 -> displayAllProducts();
+                    case 7 -> System.out.println("Exiting program. Goodbye!");
+                }
+            } while (choice != 7);
+        } catch (Exception e) {
+            System.out.println("An error occurred: " + e.getMessage());
+        }
     }
 
     private static void createProduct(boolean ifPerishable) {
         System.out.println("\n--- Create Product ---");
-        System.out.println("Enter product SKU:");
-        System.out.print("Enter SKU (8+ digits): ");
-        long sku = scanner.nextLong();
-        scanner.nextLine();
-        System.out.print("Enter Product Name: ");
-        String name = scanner.nextLine();
-        System.out.print("Enter Unit Cost: ");
-        double unitCost = scanner.nextDouble();
-        System.out.print("Enter Sale Price: ");
-        double salePrice = scanner.nextDouble();
-        System.out.print("Enter Quantity on Hand: ");
-        int quantityOnHand = scanner.nextInt();
-        System.out.print("Enter Quantity Needed: ");
-        int quantityNeeded = scanner.nextInt();
-        scanner.nextLine(); // Consume newline
-        System.out.print("Enter Special Instructions: ");
-        String specialInstructions = scanner.nextLine();
+        try {
+            System.out.print("Enter SKU (8+ digits): ");
+            long sku = scanner.nextLong();
+            scanner.nextLine(); //  
+            System.out.print("Enter Product Name: ");
+            String name = scanner.nextLine();
+            System.out.print("Enter Unit Cost: ");
+            double unitCost = scanner.nextDouble();
+            System.out.print("Enter Sale Price: ");
+            double salePrice = scanner.nextDouble();
+            System.out.print("Enter Quantity on Hand: ");
+            int quantityOnHand = scanner.nextInt();
+            System.out.print("Enter Quantity Needed: ");
+            int quantityNeeded = scanner.nextInt();
+            scanner.nextLine(); //  
+            System.out.print("Enter Special Instructions: ");
+            String specialInstructions = scanner.nextLine();
 
-        if (ifPerishable) {
-            System.out.print("Enter expiration date YYYY-MM-DD: ");
-            LocalDate expirationDate = LocalDate.parse(scanner.nextLine());
-            Product perishableProduct = new PerishableProduct(sku, name, unitCost, salePrice, quantityOnHand,
-                    quantityNeeded, specialInstructions, expirationDate);
-            products.add(perishableProduct);
-        } else {
-            Product product = new Product(sku, name, unitCost, salePrice, quantityOnHand, quantityNeeded,
-                    specialInstructions);
-            products.add(product);
+            if (ifPerishable) {
+                System.out.print("Enter expiration date YYYY-MM-DD: ");
+                LocalDate expirationDate = LocalDate.parse(scanner.nextLine());
+                products.add(new PerishableProduct(sku, name, unitCost, salePrice, quantityOnHand,
+                        quantityNeeded, specialInstructions, expirationDate));
+            } else {
+                products.add(new Product(sku, name, unitCost, salePrice, quantityOnHand, quantityNeeded,
+                        specialInstructions));
+            }
+
+            System.out.println("Product created successfully.");
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input. Please try again.");
+            scanner.nextLine(); // Clear invalid input
+        } catch (Exception e) {
+            System.out.println("An error occurred while creating the product: " + e.getMessage());
+        }
+    }
+
+    private static void editProduct() {
+        System.out.println("\n--- Edit Product ---");
+        if (products.isEmpty()) {
+            System.out.println("No products to edit.");
+            return;
         }
 
-        System.out.println("Product created successfully.");
+        try {
+            System.out.print("Enter SKU of the product to edit: ");
+            long sku = scanner.nextLong();
+            scanner.nextLine(); //  
+
+            Product productToEdit = findProductBySKU(sku);
+            if (productToEdit == null) {
+                System.out.println("Product not found.");
+                return;
+            }
+
+            System.out.print("Enter new name: ");
+            productToEdit.setName(scanner.nextLine());
+
+            System.out.print("Enter new unit cost: ");
+            productToEdit.setUnitCost(scanner.nextDouble());
+
+            System.out.print("Enter new sale price: ");
+            productToEdit.setSalePrice(scanner.nextDouble());
+
+            System.out.print("Enter new quantity on hand: ");
+            productToEdit.setQuantityOnHand(scanner.nextInt());
+
+            System.out.print("Enter new quantity needed: ");
+            productToEdit.setQuantityNeeded(scanner.nextInt());
+            scanner.nextLine(); //  
+
+            System.out.println("Product edited successfully.");
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input. Please try again.");
+            scanner.nextLine(); // Clear invalid input
+        } catch (Exception e) {
+            System.out.println("An error occurred while editing the product: " + e.getMessage());
+        }
     }
-
-private static void editProduct() {
-    System.out.println("\n--- Edit Product ---");
-    if (products.isEmpty()) {
-        System.out.println("No products to edit.");
-        return;
-    }
-    
-    System.out.print("Enter SKU of the product to edit: ");
-    long sku = scanner.nextLong();
-    scanner.nextLine(); // Consume newline
-
-    Product productToEdit = findProductBySKU(sku);
-    if (productToEdit == null) {
-        System.out.println("Product not found.");
-        return;
-    }
-
-    System.out.print("Enter new name: ");
-    String newName = scanner.nextLine();
-    productToEdit.setName(newName);
-
-    System.out.print("Enter new unit cost: ");
-    double newUnitCost = scanner.nextDouble();
-    productToEdit.setUnitCost(newUnitCost);
-
-    System.out.print("Enter new sale price: ");
-    double newSalePrice = scanner.nextDouble();
-    productToEdit.setSalePrice(newSalePrice);
-
-    System.out.print("Enter new quantity on hand: ");
-    int newQuantityOnHand = scanner.nextInt();
-    productToEdit.setQuantityOnHand(newQuantityOnHand);
-
-    System.out.print("Enter new quantity needed: ");
-    int newQuantityNeeded = scanner.nextInt();
-    productToEdit.setQuantityNeeded(newQuantityNeeded);
-
-    System.out.println("Product edited successfully.");
-}
 
     private static void deleteProduct() {
         System.out.println("\n--- Delete Product ---");
@@ -116,40 +134,54 @@ private static void editProduct() {
             return;
         }
 
-        System.out.println("Enter SKU of the product to delete: ");
-        long sku = scanner.nextLong();
-        scanner.nextLine(); // Consume newline
-    
-        Product productToDelete = findProductBySKU(sku);
-        if (productToDelete == null) {
-            System.out.println("Product not found.");
-            return;
+        try {
+            System.out.print("Enter SKU of the product to delete: ");
+            long sku = scanner.nextLong();
+            scanner.nextLine(); //  
+
+            Product productToDelete = findProductBySKU(sku);
+            if (productToDelete == null) {
+                System.out.println("Product not found.");
+                return;
+            }
+
+            products.remove(productToDelete);
+            System.out.println("Product deleted successfully.");
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input. Please try again.");
+            scanner.nextLine(); // Clear invalid input
+        } catch (Exception e) {
+            System.out.println("An error occurred while deleting the product: " + e.getMessage());
         }
-    
-        products.remove(productToDelete);
-        System.out.println("Product deleted successfully.");
     }
-    
+
     private static void displayProduct() {
-        System.out.println("\n--- Delete Product ---");
+        System.out.println("\n--- Display Product ---");
         if (products.isEmpty()) {
             System.out.println("No products to display.");
             return;
         }
 
-        System.out.println("Enter SKU of the product to display: ");
-        long sku = scanner.nextLong();
-        scanner.nextLine(); // Consume newline
+        try {
+            System.out.print("Enter SKU of the product to display: ");
+            long sku = scanner.nextLong();
+            scanner.nextLine();
 
-        Product productToDisplay = findProductBySKU(sku);
-        if (productToDisplay == null) {
-            System.out.println("Product not found.");
-            return;
+            Product productToDisplay = findProductBySKU(sku);
+            if (productToDisplay == null) {
+                System.out.println("Product not found.");
+                return;
+            }
+
+            System.out.println(productToDisplay);
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input. Please try again.");
+            scanner.nextLine(); // Clear invalid input
+        } catch (Exception e) {
+            System.out.println("An error occurred while displaying the product: " + e.getMessage());
         }
-
-        System.out.println(productToDisplay);
     }
-    
+
     private static Product findProductBySKU(long sku) {
         for (Product product : products) {
             if (product.getSku() == sku) {
@@ -161,6 +193,11 @@ private static void editProduct() {
 
     private static void displayAllProducts() {
         System.out.println("\n--- All Products ---");
+        if (products.isEmpty()) {
+            System.out.println("No products to display.");
+            return;
+        }
+
         for (Product product : products) {
             System.out.println(product);
         }
