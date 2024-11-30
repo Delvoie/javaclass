@@ -1,33 +1,19 @@
 import java.time.LocalDate;
 
-public class PerishableProduct extends Product {
-    private LocalDate expiryDate;
+public class PerishableProduct extends Product
+{
+    private LocalDate expirationDate;
 
-    public PerishableProduct() {
-        super();
-        expiryDate = LocalDate.now().plusDays(30); // Default to 30 days from today
-    }
-
-    public PerishableProduct(long sku, String name, double unitCost, double salePrice,
-                             int quantityOnHand, int quantityNeeded, String specialInstructions,
-                             LocalDate expiryDate) {
+    public PerishableProduct(long sku, String name, double unitCost, double salePrice, int quantityOnHand, int quantityNeeded, String specialInstructions, LocalDate expirationDate) {
         super(sku, name, unitCost, salePrice, quantityOnHand, quantityNeeded, specialInstructions);
-        setExpiryDate(expiryDate);
+        this.expirationDate = expirationDate;
     }
 
-    public final LocalDate getExpiryDate() {
-        return expiryDate;
+    public LocalDate getExpirationDate() {
+        return expirationDate;
     }
 
-    public final void setExpiryDate(LocalDate expiryDate) {
-        if (expiryDate == null || expiryDate.isBefore(LocalDate.now())) {
-            throw new IllegalArgumentException("Expiry date must be in the future.");
-        }
-        this.expiryDate = expiryDate;
-    }
-
-    @Override
-    public String toString() {
-        return super.toString() + "\nExpiry Date: " + expiryDate;
+    public void setExpirationDate(LocalDate expirationDate) {
+        this.expirationDate = expirationDate;
     }
 }

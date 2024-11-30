@@ -38,7 +38,7 @@ public class Product {
         this.specialInstructions = specialInstructions;
     }
 
-    // Encapsulation Get and Set
+    // Get and Set
     public long getSku() {
         return sku;
     }
