@@ -1,3 +1,7 @@
+// Lucas Delvoie
+// Program to create a product with requirements and test with input
+// November 23rd, 2024
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -34,7 +38,7 @@ public class Product {
         this.specialInstructions = specialInstructions;
     }
 
-    // set inputs
+    // Encapsulation Get and Set
     public long getSku() {
         return sku;
     }
