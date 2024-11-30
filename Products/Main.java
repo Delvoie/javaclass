@@ -37,7 +37,7 @@ public class Main {
                     case 4 -> deleteProduct();
                     case 5 -> displayProduct();
                     case 6 -> displayAllProducts();
-                    case 7 -> System.out.println("Exiting program. Goodbye!");
+                    case 7 -> System.out.println("Program Stopped.");
                 }
             } while (choice != 7);
         } catch (Exception e) {
