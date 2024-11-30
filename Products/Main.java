@@ -23,7 +23,7 @@ public class Main {
 
                 try {
                     choice = scanner.nextInt();
-                    scanner.nextLine(); 
+                    scanner.nextLine(); // Clear the buffer
                 } catch (InputMismatchException e) {
                     System.out.println("Invalid input. Please enter a number between 1 and 7.");
                     scanner.nextLine(); // Clear invalid input
@@ -45,12 +45,13 @@ public class Main {
         }
     }
 
-    private static void createProduct(boolean ifPerishable) {
+    // Create Product (Regular or Perishable)
+    private static void createProduct(boolean isPerishable) {
         System.out.println("\n--- Create Product ---");
         try {
             System.out.print("Enter SKU (8+ digits): ");
             long sku = scanner.nextLong();
-            scanner.nextLine(); //  
+            scanner.nextLine();
             System.out.print("Enter Product Name: ");
             String name = scanner.nextLine();
             System.out.print("Enter Unit Cost: ");
@@ -61,12 +62,12 @@ public class Main {
             int quantityOnHand = scanner.nextInt();
             System.out.print("Enter Quantity Needed: ");
             int quantityNeeded = scanner.nextInt();
-            scanner.nextLine(); //  
+            scanner.nextLine(); // Clear buffer
             System.out.print("Enter Special Instructions: ");
             String specialInstructions = scanner.nextLine();
 
-            if (ifPerishable) {
-                System.out.print("Enter expiration date YYYY-MM-DD: ");
+            if (isPerishable) {
+                System.out.print("Enter expiration date (YYYY-MM-DD): ");
                 LocalDate expirationDate = LocalDate.parse(scanner.nextLine());
                 products.add(new PerishableProduct(sku, name, unitCost, salePrice, quantityOnHand,
                         quantityNeeded, specialInstructions, expirationDate));
@@ -74,16 +75,16 @@ public class Main {
                 products.add(new Product(sku, name, unitCost, salePrice, quantityOnHand, quantityNeeded,
                         specialInstructions));
             }
-
             System.out.println("Product created successfully.");
         } catch (InputMismatchException e) {
             System.out.println("Invalid input. Please try again.");
             scanner.nextLine(); // Clear invalid input
         } catch (Exception e) {
-            System.out.println("An error occurred while creating the product: " + e.getMessage());
+            System.out.println("An error occurred: " + e.getMessage());
         }
     }
 
+    // Edit Product by SKU
     private static void editProduct() {
         System.out.println("\n--- Edit Product ---");
         if (products.isEmpty()) {
@@ -94,7 +95,7 @@ public class Main {
         try {
             System.out.print("Enter SKU of the product to edit: ");
             long sku = scanner.nextLong();
-            scanner.nextLine(); //  
+            scanner.nextLine(); // Clear buffer
 
             Product productToEdit = findProductBySKU(sku);
             if (productToEdit == null) {
@@ -116,7 +117,7 @@ public class Main {
 
             System.out.print("Enter new quantity needed: ");
             productToEdit.setQuantityNeeded(scanner.nextInt());
-            scanner.nextLine(); //  
+            scanner.nextLine(); // Clear buffer
 
             System.out.println("Product edited successfully.");
         } catch (InputMismatchException e) {
@@ -127,6 +128,7 @@ public class Main {
         }
     }
 
+    // Delete Product by SKU
     private static void deleteProduct() {
         System.out.println("\n--- Delete Product ---");
         if (products.isEmpty()) {
@@ -137,7 +139,7 @@ public class Main {
         try {
             System.out.print("Enter SKU of the product to delete: ");
             long sku = scanner.nextLong();
-            scanner.nextLine(); //  
+            scanner.nextLine(); // Clear buffer
 
             Product productToDelete = findProductBySKU(sku);
             if (productToDelete == null) {
@@ -155,6 +157,7 @@ public class Main {
         }
     }
 
+    // Display Product by SKU
     private static void displayProduct() {
         System.out.println("\n--- Display Product ---");
         if (products.isEmpty()) {
@@ -165,7 +168,7 @@ public class Main {
         try {
             System.out.print("Enter SKU of the product to display: ");
             long sku = scanner.nextLong();
-            scanner.nextLine();
+            scanner.nextLine(); // Clear buffer
 
             Product productToDisplay = findProductBySKU(sku);
             if (productToDisplay == null) {
@@ -182,6 +185,7 @@ public class Main {
         }
     }
 
+    // Find Product by SKU
     private static Product findProductBySKU(long sku) {
         for (Product product : products) {
             if (product.getSku() == sku) {
@@ -191,6 +195,7 @@ public class Main {
         return null;
     }
 
+    // Display All Products
     private static void displayAllProducts() {
         System.out.println("\n--- All Products ---");
         if (products.isEmpty()) {
