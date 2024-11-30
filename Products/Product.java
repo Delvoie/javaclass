@@ -92,17 +92,4 @@ public class Product {
     public void setSpecialInstructions(String specialInstructions) {
         this.specialInstructions = specialInstructions;
     }
-   
-   
-    // toString method to display the product details
-    @Override
-    public String toString() {
-        return "SKU: " + sku +
-                "\nProduct Name: " + name +
-                "\nUnit Cost: $" + unitCost +
-                "\nSale Price: $" + salePrice +
-                "\nQuantity on hand: " + quantityOnHand +
-                "\nQuantity Needed: " + quantityNeeded +
-                "\nSpecial Instructions: " + specialInstructions;
-    }
 }
