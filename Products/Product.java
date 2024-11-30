@@ -1,40 +1,47 @@
 public class Product {
-    private long sku;
-    private String name;
-    private double unitCost;
-    private double salePrice;
-    private int quantityOnHand;
-    private int quantityNeeded;
-    private String specialInstructions;
+    // Setup Variables
+    private long sku; // SKU must be 8+ digits
+    private String name; // Name of the product
+    private double unitCost; // Unit cost of the product
+    private double salePrice; // Sale price of the product
+    private int quantityOnHand; // Quantity in stock
+    private int quantityNeeded; // Quantity needed for next order
+    private String specialInstructions; // Any special notes
 
-    // Default constructor with meaningful defaults
+    // Set Defaults
     public Product() {
-        this.sku = 0;
-        this.name = "";
-        this.unitCost = 0.0;
-        this.salePrice = 0.0;
-        this.quantityOnHand = 0;
-        this.quantityNeeded = 0;
-        this.specialInstructions = "";
+        sku = 0;
+        name = "";
+        unitCost = 0.0;
+        salePrice = 0.0;
+        quantityOnHand = 0;
+        quantityNeeded = 0;
+        specialInstructions = "";
     }
 
-    // Parameterized constructor
+    // Set Parameters
     public Product(long sku, String name, double unitCost, double salePrice, int quantityOnHand, int quantityNeeded, String specialInstructions) {
-        this.sku = sku;
-        this.name = name;
-        this.unitCost = unitCost;
-        this.salePrice = salePrice;
-        this.quantityOnHand = quantityOnHand;
-        this.quantityNeeded = quantityNeeded;
+        setSku(sku);
+        setName(name);
+        setUnitCost(unitCost);
+        setSalePrice(salePrice);
+        setQuantityOnHand(quantityOnHand);
+        setQuantityNeeded(quantityNeeded);
         this.specialInstructions = specialInstructions;
     }
 
-    // Getters and Setters to create
-    public long getSku() {
-        return sku;
+
+    // Getters and Setters - W3schools.com. Java Encapsulation. (2024). https://www.w3schools.com/java/java_encapsulation.asp
+    public void getSku(long sku) {
+        if (String.valueOf(sku).length() < 8) {
+            throw new IllegalArgumentException("SKU must be more than 8 numbers.");
+        }
     }
 
     public void setSku(long sku) {
+        if (String.valueOf(sku).length() < 8) {
+            throw new IllegalArgumentException("SKU must be more than 8 numbers.");
+        }
         this.sku = sku;
     }
 
@@ -85,7 +92,6 @@ public class Product {
     public void setSpecialInstructions(String specialInstructions) {
         this.specialInstructions = specialInstructions;
     }
-    // W3schools.com. Java Encapsulation. (2024). https://www.w3schools.com/java/java_encapsulation.asp 
    
    
     // toString method to display the product details

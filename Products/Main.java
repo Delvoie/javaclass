@@ -19,11 +19,11 @@ public class Main {
                 System.out.println("5) Display Product by SKU");
                 System.out.println("6) Display All Products");
                 System.out.println("7) Exit");
-                System.out.print("Choose an option: ");
+                System.out.println("Enter The Number : ");
 
                 try {
                     choice = scanner.nextInt();
-                    scanner.nextLine(); // Clear the buffer
+                    scanner.nextLine();
                 } catch (InputMismatchException e) {
                     System.out.println("Invalid input. Please enter a number between 1 and 7.");
                     scanner.nextLine(); // Clear invalid input
@@ -62,7 +62,7 @@ public class Main {
             int quantityOnHand = scanner.nextInt();
             System.out.print("Enter Quantity Needed: ");
             int quantityNeeded = scanner.nextInt();
-            scanner.nextLine(); // Clear buffer
+            scanner.nextLine();
             System.out.print("Enter Special Instructions: ");
             String specialInstructions = scanner.nextLine();
 
@@ -88,7 +88,7 @@ public class Main {
     private static void editProduct() {
         System.out.println("\n--- Edit Product ---");
         if (products.isEmpty()) {
-            System.out.println("No products to edit.");
+            System.out.println("No products avalible.");
             return;
         }
 
@@ -132,7 +132,7 @@ public class Main {
     private static void deleteProduct() {
         System.out.println("\n--- Delete Product ---");
         if (products.isEmpty()) {
-            System.out.println("No products to delete.");
+            System.out.println("No products avalible.");
             return;
         }
 
@@ -161,7 +161,7 @@ public class Main {
     private static void displayProduct() {
         System.out.println("\n--- Display Product ---");
         if (products.isEmpty()) {
-            System.out.println("No products to display.");
+            System.out.println("No products avalible.");
             return;
         }
 
@@ -199,12 +199,13 @@ public class Main {
     private static void displayAllProducts() {
         System.out.println("\n--- All Products ---");
         if (products.isEmpty()) {
-            System.out.println("No products to display.");
+            System.out.println("No products avalible.");
             return;
         }
 
         for (Product product : products) {
             System.out.println(product);
-        }
+            System.out.println();
+            }
     }
 }
