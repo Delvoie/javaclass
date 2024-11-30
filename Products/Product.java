@@ -10,7 +10,7 @@ public class Product {
     // Default constructor with meaningful defaults
     public Product() {
         this.sku = 0;
-        this.name = "Unknown";
+        this.name = "";
         this.unitCost = 0.0;
         this.salePrice = 0.0;
         this.quantityOnHand = 0;
@@ -29,7 +29,7 @@ public class Product {
         this.specialInstructions = specialInstructions;
     }
 
-    // Getters and Setters
+    // Getters and Setters to create
     public long getSku() {
         return sku;
     }
@@ -85,7 +85,9 @@ public class Product {
     public void setSpecialInstructions(String specialInstructions) {
         this.specialInstructions = specialInstructions;
     }
-
+    // W3schools.com. Java Encapsulation. (2024). https://www.w3schools.com/java/java_encapsulation.asp 
+   
+   
     // toString method to display the product details
     @Override
     public String toString() {

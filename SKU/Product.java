@@ -108,6 +108,7 @@ public class Product {
     public String getSpecialInstructions() {
         return specialInstructions;
     }
+    // W3schools.com. Java Encapsulation. (2024). https://www.w3schools.com/java/java_encapsulation.asp 
 
     @Override
     public String toString() {
