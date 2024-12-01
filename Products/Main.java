@@ -26,7 +26,7 @@ public class Main {
                     scanner.nextLine();
                 } catch (InputMismatchException e) {
                     System.out.println("Invalid input. Please enter a number between 1 and 7.");
-                    scanner.nextLine(); // Clear invalid input
+                    scanner.nextLine();
                     continue;
                 }
 
@@ -78,7 +78,7 @@ public class Main {
             System.out.println("Product created successfully.");
         } catch (InputMismatchException e) {
             System.out.println("Invalid input. Please try again.");
-            scanner.nextLine(); // Clear invalid input
+            scanner.nextLine(); 
         } catch (Exception e) {
             System.out.println("An error occurred: " + e.getMessage());
         }
@@ -122,7 +122,7 @@ public class Main {
             System.out.println("Product edited successfully.");
         } catch (InputMismatchException e) {
             System.out.println("Invalid input. Please try again.");
-            scanner.nextLine(); // Clear invalid input
+            scanner.nextLine(); 
         } catch (Exception e) {
             System.out.println("An error occurred while editing the product: " + e.getMessage());
         }
@@ -151,7 +151,7 @@ public class Main {
             System.out.println("Product deleted successfully.");
         } catch (InputMismatchException e) {
             System.out.println("Invalid input. Please try again.");
-            scanner.nextLine(); // Clear invalid input
+            scanner.nextLine();
         } catch (Exception e) {
             System.out.println("An error occurred while deleting the product: " + e.getMessage());
         }
