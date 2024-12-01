@@ -95,7 +95,7 @@ public class Main {
         try {
             System.out.print("Enter SKU of the product to edit: ");
             long sku = scanner.nextLong();
-            scanner.nextLine();
+            scanner.nextLine(); // Clear buffer
 
             Product productToEdit = findProductBySKU(sku);
             if (productToEdit == null) {
@@ -117,11 +117,8 @@ public class Main {
 
             System.out.print("Enter new quantity needed: ");
             productToEdit.setQuantityNeeded(scanner.nextInt());
-            scanner.nextLine();
+            scanner.nextLine();     
 
-            System.out.print("Enter new special instructions: ");
-            productToEdit.setSpecialInstructions(scanner.nextLine());
-            
             if (productToEdit instanceof PerishableProduct) {
                 PerishableProduct perishableProduct = (PerishableProduct) productToEdit;
                 System.out.print("Enter new expiration date (YYYY-MM-DD): ");

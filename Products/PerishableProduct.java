@@ -16,4 +16,10 @@ public class PerishableProduct extends Product {
     public void setExpirationDate(LocalDate expirationDate) {
         this.expirationDate = expirationDate;
     }
+   
+    @Override
+public String toString() {
+    return super.toString() + "\nExpiration Date: " + expirationDate;
+}
+
 }
