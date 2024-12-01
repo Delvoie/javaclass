@@ -117,10 +117,16 @@ public class Main {
 
             System.out.print("Enter new quantity needed: ");
             productToEdit.setQuantityNeeded(scanner.nextInt());
-            scanner.nextLine(); 
+            scanner.nextLine();
 
             System.out.print("Enter new special instructions: ");
-            productToEdit.specialInstructions(scanner.nextLine());
+            productToEdit.setSpecialInstructions(scanner.nextLine());
+            
+            if (productToEdit instanceof PerishableProduct) {
+                PerishableProduct perishableProduct = (PerishableProduct) productToEdit;
+                System.out.print("Enter new expiration date (YYYY-MM-DD): ");
+                perishableProduct.setExpirationDate(LocalDate.parse(scanner.nextLine()));
+            }
 
             System.out.println("Product edited successfully.");
         } catch (InputMismatchException e) {
@@ -142,7 +148,7 @@ public class Main {
         try {
             System.out.print("Enter SKU of the product to delete: ");
             long sku = scanner.nextLong();
-            scanner.nextLine();
+            scanner.nextLine(); // Clear buffer
 
             Product productToDelete = findProductBySKU(sku);
             if (productToDelete == null) {
@@ -171,7 +177,7 @@ public class Main {
         try {
             System.out.print("Enter SKU of the product to display: ");
             long sku = scanner.nextLong();
-            scanner.nextLine();
+            scanner.nextLine(); // Clear buffer
 
             Product productToDisplay = findProductBySKU(sku);
             if (productToDisplay == null) {
