@@ -95,7 +95,7 @@ public class Main {
         try {
             System.out.print("Enter SKU of the product to edit: ");
             long sku = scanner.nextLong();
-            scanner.nextLine(); // Clear buffer
+            scanner.nextLine();
 
             Product productToEdit = findProductBySKU(sku);
             if (productToEdit == null) {
@@ -117,7 +117,10 @@ public class Main {
 
             System.out.print("Enter new quantity needed: ");
             productToEdit.setQuantityNeeded(scanner.nextInt());
-            scanner.nextLine(); // Clear buffer
+            scanner.nextLine(); 
+
+            System.out.print("Enter new special instructions: ");
+            productToEdit.specialInstructions(scanner.nextLine());
 
             System.out.println("Product edited successfully.");
         } catch (InputMismatchException e) {
@@ -139,7 +142,7 @@ public class Main {
         try {
             System.out.print("Enter SKU of the product to delete: ");
             long sku = scanner.nextLong();
-            scanner.nextLine(); // Clear buffer
+            scanner.nextLine();
 
             Product productToDelete = findProductBySKU(sku);
             if (productToDelete == null) {
@@ -168,7 +171,7 @@ public class Main {
         try {
             System.out.print("Enter SKU of the product to display: ");
             long sku = scanner.nextLong();
-            scanner.nextLine(); // Clear buffer
+            scanner.nextLine();
 
             Product productToDisplay = findProductBySKU(sku);
             if (productToDisplay == null) {
