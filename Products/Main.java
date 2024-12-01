@@ -117,12 +117,14 @@ public class Main {
 
             System.out.print("Enter new quantity needed: ");
             productToEdit.setQuantityNeeded(scanner.nextInt());
-            scanner.nextLine();     
+            scanner.nextLine(); 
+            
+            System.out.print("Enter special instructions: ");
+            String specialInstructions = scanner.nextLine();
 
             if (productToEdit instanceof PerishableProduct) {
-                PerishableProduct perishableProduct = (PerishableProduct) productToEdit;
                 System.out.print("Enter new expiration date (YYYY-MM-DD): ");
-                perishableProduct.setExpirationDate(LocalDate.parse(scanner.nextLine()));
+                ((PerishableProduct) productToEdit).setExpirationDate(LocalDate.parse(scanner.nextLine()));
             }
 
             System.out.println("Product edited successfully.");

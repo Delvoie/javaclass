@@ -172,4 +172,6 @@ public class Product {
             scanner.close();
         }
     }
+
+    }
 }

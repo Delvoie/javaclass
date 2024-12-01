@@ -27,16 +27,17 @@ public class Product {
         setSalePrice(salePrice);
         setQuantityOnHand(quantityOnHand);
         setQuantityNeeded(quantityNeeded);
-        setSpecialInstructions(specialInstructions);
+        this.specialInstructions = specialInstructions;
     }
 
 
     // Getters and Setters - W3schools.com. Java Encapsulation. (2024). https://www.w3schools.com/java/java_encapsulation.asp
-    public long getSku() {
-        return sku;
+    public void getSku(long sku) {
+        if (String.valueOf(sku).length() < 8) {
+            throw new IllegalArgumentException("SKU must be more than 8 numbers.");
+        }
     }
-    
-    
+
     public void setSku(long sku) {
         if (String.valueOf(sku).length() < 8) {
             throw new IllegalArgumentException("SKU must be more than 8 numbers.");
@@ -91,5 +92,5 @@ public class Product {
     public void setSpecialInstructions(String specialInstructions) {
         this.specialInstructions = specialInstructions;
     }
-    
+
 }
