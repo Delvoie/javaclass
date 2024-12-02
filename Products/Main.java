@@ -117,7 +117,7 @@ public class Main {
 
             System.out.print("Enter new quantity needed: ");
             productToEdit.setQuantityNeeded(scanner.nextInt());
-            scanner.nextLine(); // Clear buffer
+            scanner.nextLine(); 
 
             System.out.print("Enter new special instructions: ");
             productToEdit.setSpecialInstructions(scanner.nextLine());
@@ -148,7 +148,7 @@ public class Main {
         try {
             System.out.print("Enter SKU of the product to delete: ");
             long sku = scanner.nextLong();
-            scanner.nextLine(); // Clear buffer
+            scanner.nextLine(); 
 
             Product productToDelete = findProductBySKU(sku);
             if (productToDelete == null) {
@@ -188,7 +188,7 @@ public class Main {
             System.out.println(productToDisplay);
         } catch (InputMismatchException e) {
             System.out.println("Invalid input. Please try again.");
-            scanner.nextLine(); // Clear invalid input
+            scanner.nextLine(); 
         } catch (Exception e) {
             System.out.println("An error occurred while displaying the product: " + e.getMessage());
         }
