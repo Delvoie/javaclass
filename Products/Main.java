@@ -37,7 +37,7 @@ public class Main {
                     case 4 -> deleteProduct();
                     case 5 -> displayProduct();
                     case 6 -> displayAllProducts();
-                    case 7 -> System.out.println("Program Stopped.");
+                    case 7 -> System.out.println("Program ended.");
                 }
             } while (choice != 7);
         } catch (Exception e) {
@@ -88,44 +88,50 @@ public class Main {
     private static void editProduct() {
         System.out.println("\n--- Edit Product ---");
         if (products.isEmpty()) {
-            System.out.println("No products avalible.");
+            System.out.println("No products available.");
             return;
         }
 
         try {
             System.out.print("Enter SKU of the product to edit: ");
-            long sku = scanner.nextLong();
+            long skuToEdit = scanner.nextLong();
             scanner.nextLine(); // Clear buffer
 
-            Product productToEdit = findProductBySKU(sku);
+            Product productToEdit = findProductBySKU(skuToEdit);
             if (productToEdit == null) {
                 System.out.println("Product not found.");
                 return;
             }
 
             System.out.print("Enter new name: ");
-            productToEdit.setName(scanner.nextLine());
+            String newName = scanner.nextLine();
+            productToEdit.setName(newName);
 
             System.out.print("Enter new unit cost: ");
-            productToEdit.setUnitCost(scanner.nextDouble());
+            double newUnitCost = scanner.nextDouble();
+            productToEdit.setUnitCost(newUnitCost);
 
             System.out.print("Enter new sale price: ");
-            productToEdit.setSalePrice(scanner.nextDouble());
+            double newSalePrice = scanner.nextDouble();
+            productToEdit.setSalePrice(newSalePrice);
 
             System.out.print("Enter new quantity on hand: ");
-            productToEdit.setQuantityOnHand(scanner.nextInt());
+            int newQuantityOnHand = scanner.nextInt();
+            productToEdit.setQuantityOnHand(newQuantityOnHand);
 
             System.out.print("Enter new quantity needed: ");
-            productToEdit.setQuantityNeeded(scanner.nextInt());
-            scanner.nextLine(); 
+            int newQuantityNeeded = scanner.nextInt();
+            productToEdit.setQuantityNeeded(newQuantityNeeded);
 
             System.out.print("Enter new special instructions: ");
-            productToEdit.setSpecialInstructions(scanner.nextLine());
+            String newSpecialInstructions = scanner.nextLine();
+            productToEdit.setSpecialInstructions(newSpecialInstructions);
 
             if (productToEdit instanceof PerishableProduct) {
                 PerishableProduct perishableProduct = (PerishableProduct) productToEdit;
                 System.out.print("Enter new expiration date (YYYY-MM-DD): ");
-                perishableProduct.setExpirationDate(LocalDate.parse(scanner.nextLine()));
+                LocalDate newExpirationDate = LocalDate.parse(scanner.nextLine());
+                perishableProduct.setExpirationDate(newExpirationDate);
             }
 
             System.out.println("Product edited successfully.");
@@ -136,6 +142,7 @@ public class Main {
             System.out.println("An error occurred while editing the product: " + e.getMessage());
         }
     }
+
 
     // Delete Product by SKU
     private static void deleteProduct() {
