@@ -20,7 +20,6 @@ public class Main {
                 System.out.println("6) Display All Products");
                 System.out.println("7) Exit");
                 System.out.println("Enter a Number : ");
-
                 try {
                     choice = scanner.nextInt();
                     scanner.nextLine();
