@@ -18,6 +18,10 @@ public class Main {
         textArea.setToolTipText("Insert Your Text Here:");
         frame.add(new JScrollPane(textArea), BorderLayout.CENTER);
 
+        // Create status bar
+        JLabel textLabel = new JLabel("Enter Text Here");
+        frame.add(textLabel, BorderLayout.NORTH);
+
         // Create button panel
         JPanel buttonPanel = new JPanel();
         JButton SaveButton = new JButton("Save");
@@ -35,13 +39,14 @@ public class Main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String text = textArea.getText();
-                if (text.equals("lucas")) {
+                if (text.equals("password")) {
                     System.out.println("Login successful!");
                     JOptionPane.showMessageDialog(frame, "My dog ate my coding assignment \n ... \n" +
                         "It took him a couple bytes");
                 } else {
                     savedText = text;
                     System.out.println(String.format("Text Saved %s", textArea.getText()));
+                    textLabel.setText("Text saved successfully");
                 }
             }
         });
@@ -50,6 +55,7 @@ public class Main {
             public void actionPerformed(ActionEvent event) {
                 textArea.setText(savedText);
                 System.out.println(String.format("Text loaded: %s", textArea.getText()));
+                textLabel.setText("Text loaded successfully");
             }
         });
 
