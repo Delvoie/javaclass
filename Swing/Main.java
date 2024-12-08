@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) {
         // Create frame
         JFrame frame = new JFrame("Text Editor");
-        frame.setSize(500, 400);
+        frame.setSize(300, 200);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
 
