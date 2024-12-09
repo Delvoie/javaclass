@@ -5,12 +5,16 @@ import java.awt.event.*;
 
 public class Main {
     private static String savedText = "";
+    
+    
     // GeeksForGeeks (2021) Java AWT | BorderLayout Class (2021) https://www.geeksforgeeks.org/java-awt-borderlayout-class/
     public static void main(String[] args) {
-        // Create frame
+        // Create frame and title
         JFrame frame = new JFrame("Text Editor");
         frame.setSize(300, 200);
+        //exit frame on close
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //utalize borderlayout
         frame.setLayout(new BorderLayout());
 
         // Create text area
@@ -25,22 +29,24 @@ public class Main {
         // Create button panel
         JPanel buttonPanel = new JPanel();
         JButton SaveButton = new JButton("Save");
-        JButton openButton = new JButton("Open");
-        JButton exitButton = new JButton("Exit");
-        
         buttonPanel.add(SaveButton);
+        JButton openButton = new JButton("Open");
         buttonPanel.add(openButton);
+        JButton exitButton = new JButton("Exit");
         buttonPanel.add(exitButton);
         
         frame.add(buttonPanel, BorderLayout.SOUTH);
 
-        // Add event listener to Save button
+// Add event listeners
+        // button to Save button
         SaveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String text = textArea.getText();
                 if (text.equals("password")) {
                     System.out.println("Login successful!");
+
+                // Show a message dialog
                     JOptionPane.showMessageDialog(frame, "My dog ate my coding assignment \n ... \n" +
                         "It took him a couple bytes");
                 } else {
@@ -50,7 +56,7 @@ public class Main {
                 }
             }
         });
-
+        // button to open text
         openButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 textArea.setText(savedText);
@@ -58,7 +64,7 @@ public class Main {
                 textLabel.setText("Text loaded successfully");
             }
         });
-
+        // button to exit
         exitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 System.exit(0);
