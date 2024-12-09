@@ -2,7 +2,7 @@ public class Product {
     // Setup Variables
     private long sku; // SKU must be 8+ digits
     private String name; // Name of the product
-    private double unitCost; // Unit cost of the product
+    private double unitCost; // Unit cost of the product1
     private double salePrice; // Sale price of the product
     private int quantityOnHand; // Quantity in stock
     private int quantityNeeded; // Quantity needed for next order
