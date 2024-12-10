@@ -94,7 +94,7 @@ public class Main {
         try {
             System.out.print("Enter SKU of the product to edit: ");
             long skuToEdit = scanner.nextLong();
-            scanner.nextLine(); // Clear buffer
+            scanner.nextLine(); 
 
             Product productToEdit = findProductBySKU(skuToEdit);
             if (productToEdit == null) {

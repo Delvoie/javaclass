@@ -6,7 +6,6 @@ import java.awt.event.*;
 public class Main {
     private static String savedText = "";
     
-    
     // GeeksForGeeks (2021) Java AWT | BorderLayout Class (2021) https://www.geeksforgeeks.org/java-awt-borderlayout-class/
     public static void main(String[] args) {
         // Create frame and title
